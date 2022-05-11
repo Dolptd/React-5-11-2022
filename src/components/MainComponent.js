@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
+
 import Menu from './MenuComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import Contact from './ContactComponent';
+import DishDetail from './DishdetailComponent';
+
 import { DISHES } from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
@@ -47,6 +50,13 @@ class Main extends Component {
         />
       );
     }
+
+    const DishWithId = ({ match }) => {
+      return (
+        <DishDetail comments={this.props.comments} dishes={this.props.dishes} selectedDish={match.params.dishId} />
+      );
+    };
+
     return (
       <div>
         <Header />
@@ -55,6 +65,7 @@ class Main extends Component {
             <Route path='/home' component={HomePage} />
             <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes} />} />
             <Route exact path='/contactus' component={Contact} />
+            <Route path='/menu/:dishId' component={DishWithId} />
             <Redirect to="/home" />
           </Switch>
         </div>
