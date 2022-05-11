@@ -81,7 +81,7 @@ class Contact extends Component {
     render() {
         const errors = this.validate(this.state.firstname, this.state.lastname, this.state.telnum, this.state.email);
         return (
-            <div className="container">
+            <div div className="container" >
                 <div className="row row-content">
                     <div className="col-12">
                         <h3>Location Information</h3>
